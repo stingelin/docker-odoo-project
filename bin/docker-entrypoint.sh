@@ -96,7 +96,10 @@ if [ -z "$(pip list --format=columns | grep "/odoo" | grep -v "/odoo/src")" ]; t
   chown -R odoo: /odoo/*.egg-info
 fi
 
-
+if [ -d "/home/odoo/.postgresql" ]; then
+  echo "set certificate permissions"
+  chmod -R 0600 /home/odoo/.postgresql
+fi
 # Wait until postgres is up
 wait_postgres.sh
 
